@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surviving a night out in Liverpool OOP game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="relative min-h-screen bg-[rgb(39,59,58)] text-white overflow-hidden p-4">
+
+    <!-- Top row: Console (left), Game area (middle), Character Info (right) -->
+    <div class="flex flex-row justify-center gap-4 mb-4">
+      
+      <!-- Left side Console container -->
+      <div class="w-64 bg-gray-700 rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-semibold font-mono text-white mb-2">Usefull Commands</h2>
+        <div class="text-white font-mono text-sm">Commands go here.</div>
+      </div>
+  
+      <!-- Main Game container (middle) -->
+      <div class="max-w-5xl w-full bg-gray-700 rounded-lg shadow-lg p-6 flex flex-col justify-between">
+        <h1 class="text-3xl font-bold font-mono text-center mb-6 text-white">Surviving a Night in Liverpool</h1>
+        <div id="details" class="space-y-4">
+          <div class="bg-[rgb(39,59,58)] p-4 rounded-lg">
+            <p id="textarea" class="text-white font-mono whitespace-pre-line">Game text will go here.</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Right side Character Info container -->
+      <div class="w-64 bg-gray-700 rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-bold font-mono text-white mb-4">Character Info</h2>
+        <div class="text-white font-mono text-sm">Stats, inventory, etc.</div>
+      </div>
+  
+    </div>
+  
+    <!-- Bottom row: Command input container -->
+    <div class="flex flex-row justify-center gap-4">
+      
+      <!-- Command input container (centered below the game area) -->
+      <div class="max-w-5xl w-full bg-gray-700 rounded-lg shadow-md p-4">
+        <label for="usertext" class="block text-l font-medium font-mono text-white mb-2">Enter your command:</label>
+        <input 
+          type="text" 
+          id="usertext" 
+          class="w-full px-4 py-2 border border-[rgb(39,59,58)] bg-[rgb(39,59,58)] rounded-md focus:outline-none focus:ring-2 focus:ring-white"
+          placeholder="Type a direction (north, south, east, west) and press Enter"
+        />
+      </div>
+  
+    </div>
+
+
+
+
+
+
+    <script src="game.js"></script>
+</body>
+</html>
