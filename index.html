@@ -9,37 +9,37 @@
 
 <body class="relative min-h-screen bg-[rgb(39,59,58)] text-white overflow-hidden p-4">
 
-    <!-- Top row: Console (left), Game area (middle), Character Info (right) -->
-    <div class="flex flex-row justify-center gap-4 mb-4">
+    <!-- Top row -->
+    <div class="flex flex-row justify-center gap-4 mb-6">
       
-      <!-- Left side Console container -->
+      <!-- Console container -->
       <div class="w-64 bg-gray-700 rounded-lg shadow-lg p-6">
-        <h2 class="text-xl font-semibold font-mono text-white mb-2">Usefull Commands</h2>
+        <h2 class="text-xl font-semibold font-mono text-white mb-2">Useful Commands</h2>
         <div class="text-white font-mono text-sm">Commands go here.</div>
       </div>
   
-      <!-- Main Game container (middle) -->
+      <!-- Main Game container -->
       <div class="max-w-5xl w-full bg-gray-700 rounded-lg shadow-lg p-6 flex flex-col justify-between">
-        <h1 class="text-3xl font-bold font-mono text-center mb-6 text-white">Surviving a Night in Liverpool</h1>
+        <h1 class="text-3xl font-bold font-mono text-center mb-6 text-white">Surviving a Night Out in Liverpool</h1>
         <div id="details" class="space-y-4">
           <div class="bg-[rgb(39,59,58)] p-4 rounded-lg">
-            <p id="textarea" class="text-white font-mono whitespace-pre-line">Game text will go here.</p>
+            <p id="textarea" class="text-white font-mono whitespace-pre-line"></p>
           </div>
         </div>
       </div>
   
-      <!-- Right side Character Info container -->
+      <!-- Inventory container -->
       <div class="w-64 bg-gray-700 rounded-lg shadow-lg p-6">
-        <h2 class="text-xl font-bold font-mono text-white mb-4">Character Info</h2>
+        <h2 class="text-xl font-bold font-mono text-white mb-4">Inventory</h2>
         <div class="text-white font-mono text-sm">Stats, inventory, etc.</div>
       </div>
   
     </div>
   
-    <!-- Bottom row: Command input container -->
+    <!-- Command input container -->
     <div class="flex flex-row justify-center gap-4">
       
-      <!-- Command input container (centered below the game area) -->
+    
       <div class="max-w-5xl w-full bg-gray-700 rounded-lg shadow-md p-4">
         <label for="usertext" class="block text-l font-medium font-mono text-white mb-2">Enter your command:</label>
         <input 
