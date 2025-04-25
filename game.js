@@ -25,7 +25,9 @@ class Location {
       this.streetLocation = startingLocation;
       this.drinks = 0;
       this.blackedOut = false;
+      this.pickpocketed = false;
       this.won = false;
+      this.inventory = ['Wallet', 'ID', 'Phone'];
     }
   
     move(command) {
@@ -36,10 +38,13 @@ class Location {
   
       // Allows player to go home
       if (lowerCommand === 'home') {
+        if (this.pickpocketed) {
+          return "You reach into your pocket to get a taxi... but realize you have no wallet, no phone, no idea how to get home. You wander the streets until morning. Game over!";
+        }
         this.won = true;
         return "You decide to head home and call a taxi. You’ve survived the night out in Liverpool. Congrats, you win... an enourmous hangover!";
       }
-  
+      
       // Allows player to leave
       if (lowerCommand === 'leave') {
         this.currentLocation = this.streetLocation;
@@ -89,8 +94,14 @@ class Location {
       const northBar1Bar = new Location("Razz Bar", "You approach the bar in The Razz. It's sticky but cheap.", {}, {
         drink: () => "You order the signature fat frog, are you sure that was a wise decision?"
       });
-      const northBar1Dance = new Location("Razz Dancefloor", "You step onto the dance floor at The Razz. It's packed, humid, and quite dark.", {}, {
-        dance: () => "You try to dance but end up just swaying awkwardly. The floor is sticky and the lights are flashing."
+      const northBar1Dance = new Location("Razz Dancefloor", "You step onto the dance floor at The Razz. It's packed, humid, and quite dark. A group of strangers beckons you to come dance with them. ", {}, {
+        dance: () => "You try to dance but end up just swaying awkwardly. The floor is sticky and the lights are flashing.",
+        "dance with group": () => {
+            game.player.inventory = [];
+            game.player.pickpocketed = true;
+            updateInventoryDisplay(game.player.inventory);
+            return "You dance with a friendly group... but wait... your wallet, phone, and ID are gone. You've been pickpocketed!";
+          }
       });
       northBar1Bar.options.dancefloor = northBar1Dance;
       northBar1Dance.options.bar = northBar1Bar;
@@ -181,6 +192,8 @@ class Location {
     start(name) {
       this.player = new Player(name, this.locations.street);
       updateDrinkCounter(this.player.drinks);
+      updateInventoryDisplay(this.player.inventory);
+      updateCommandList();
       return `Welcome, ${name}!\n${this.player.currentLocation.describe()}`;
     }
   
@@ -203,6 +216,41 @@ class Location {
 function updateDrinkCounter(count) {
     if (drinkDisplay) {
       drinkDisplay.textContent = `Drinks: ${count}`;
+    }
+  }
+
+// Updates the list of useful commands
+function updateCommandList() {
+    const commandList = document.getElementById("command-list");
+    if (!commandList) return;
+  
+    const commands = [
+      "north / south / east / west",
+      "bar / dancefloor",
+      "drink",
+      "dance",
+      "dance with group (at The Razz)",
+      "leave (return to street)",
+      "home (try to go home)"
+    ];
+  
+    commandList.innerHTML = "";
+    commands.forEach(cmd => {
+      const item = document.createElement("div");
+      item.textContent = `> ${cmd}`;
+      commandList.appendChild(item);
+    });
+  }
+  // Updates the inventory display
+function updateInventoryDisplay(items) {
+    const inventoryDisplay = document.getElementById("inventory-items");
+    if (inventoryDisplay) {
+      inventoryDisplay.innerHTML = ""; 
+      items.forEach(item => {
+        const div = document.createElement("div");
+        div.textContent = `• ${item}`;
+        inventoryDisplay.appendChild(div);
+      });
     }
   }
   
